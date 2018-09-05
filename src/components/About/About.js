@@ -5,9 +5,13 @@ class About extends Component {
   render() {
     return (
       <div>
-        <div>This is the about page.</div>
         <h1>Jacob Gakstatter</h1>
-        <div>I graduated from Lambda School in June 2018.</div>
+        <div>
+          I graduated from Lambda School in June 2018. Making a career switch
+          from sales (Sherwin Williams) to software engineering, and I've never
+          felt better about a decision.
+        </div>
+        {/* Intro */}
         <div>
           <ul>
             <h3>Experience with these technologies:</h3>
@@ -34,6 +38,7 @@ class About extends Component {
             </ul>
           </ul>
         </div>
+        {/* Technologies */}
         <div>
           <ul>
             <h3>Interests include:</h3>
@@ -44,6 +49,7 @@ class About extends Component {
             </li>
           </ul>
         </div>
+        {/* Hobbies */}
       </div>
     );
   }
