@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-//Components 
+//Components
 import About from '../About/About';
 import Resume from '../Resume/Resume';
 import Projects from '../Resume/Resume';
@@ -13,9 +13,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Jacob Gakstatter</h1>
-          </header>
+          <header className="App-header" />
           <Switch>
             <Route path="/about" component={About} />
             <Route path="/resume" component={Resume} />

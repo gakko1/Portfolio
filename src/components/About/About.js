@@ -1,7 +1,50 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import * as emailjs from 'emailjs-com';
+
+import GitHub from '../../assets/github_logo.png';
+import LinkedIn from '../../assets/linkedIn_logo.png';
+
 import './About.css';
 
 class About extends Component {
+  state = {
+    name: '',
+    email: '',
+    message: ''
+  };
+
+  sendEmail = (senderEmail, senderName, message, templateId = 'portfolio') => {
+    console.log(process.env);
+    emailjs
+      .send(
+        'gmail',
+        templateId,
+        {
+          senderEmail,
+          senderName,
+          message
+        },
+        process.env.REACT_APP_EMAILJS_USERID
+      )
+      .then(res => {
+        console.log(res);
+        alert('Message successfully sent!');
+      })
+      .catch(err => {
+        console.error('Failed to send email:', err);
+      });
+  };
+
+  onSubmitHandler = event => {
+    event.preventDefault();
+    this.sendEmail(this.state.email, this.state.name, this.state.message);
+  };
+
+  inputChangeHandler = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  };
+
   render() {
     return (
       <div>
@@ -50,6 +93,46 @@ class About extends Component {
           </ul>
         </div>
         {/* Hobbies */}
+        <div>
+          <h4>Visit my social sites:</h4>
+          <a href="https://github.com/gakko1">
+            <img className="logo github" src={GitHub} alt="GitHub logo" />
+          </a>
+          <a href="https://www.linkedin.com/in/jacob-gakstatter/">
+            <img className="logo linkedin" src={LinkedIn} alt="LinkedIn logo" />
+          </a>
+          <h4>Or contact me via this form and I'll email you back:</h4>
+          <form onSubmit={e => this.onSubmitHandler(e)}>
+            {/* <label for="name">Name</label> */}
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={this.state.name}
+              placeholder="Name"
+              onChange={this.inputChangeHandler}
+            />
+            {/* <label for="email">email</label> */}
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={this.state.email}
+              placeholder="Email"
+              onChange={this.inputChangeHandler}
+            />
+            {/* <label for="message">message</label> */}
+            <input
+              type="text"
+              name="message"
+              id="message"
+              value={this.state.message}
+              placeholder="Message to Jacob"
+              onChange={this.inputChangeHandler}
+            />
+            <button>Submit</button>
+          </form>
+        </div>
       </div>
     );
   }
