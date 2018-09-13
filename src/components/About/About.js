@@ -28,7 +28,6 @@ class About extends Component {
         process.env.REACT_APP_EMAILJS_USERID
       )
       .then(res => {
-        console.log(res);
         alert('Message successfully sent!');
       })
       .catch(err => {
